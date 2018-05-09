@@ -1,0 +1,19 @@
+{
+  "name": "vehiclepoc",
+  "version": "1.0.0",
+  "description": "vehiclePoc api",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twinkle-Anand/vehiclePoc.git"
+  },
+  "author": "Twinkle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Twinkle-Anand/vehiclePoc/issues"
+  },
+  "homepage": "https://github.com/Twinkle-Anand/vehiclePoc#readme"
+}
