@@ -99,6 +99,14 @@ app.bindButtons = function(){
           var overlay = document.getElementsByClassName('overlay')[0];
           overlay.style.display='block';
           formType.style.display='block';
+          var cancelBtn= formType.getElementsByClassName('close')[0];
+          cancelBtn.onclick=overlayDisable;
+          function overlayDisable(){
+            document.querySelector(".overlay").style.display='none';
+            document.getElementsByClassName('transfer')[0].style.display='none';
+             document.querySelector(".formError").style.display = 'none';
+             document.querySelector(".formSuccess").style.display='none';
+          }
           var form = document.getElementById('transferVehicle');
           form.elements.namedItem("Vehicle_Id").value=Vehicle_Id;
         } else {
@@ -117,8 +125,22 @@ app.bindButtons = function(){
           var overlay = document.getElementsByClassName('overlay')[0];
           overlay.style.display='block';
           formType.style.display='block';
+
+          var cancelBtn= formType.getElementsByClassName('close')[0];
+          cancelBtn.onclick=overlayDisable;
+          function overlayDisable(){
+            document.querySelector(".overlay").style.display='none';
+            document.getElementsByClassName('sale')[0].style.display='none';
+            document.querySelector(".formError").style.display = 'none';
+            document.querySelector(".formSuccess").style.display='none';
+          }
+
           var form = document.getElementById('saleVehicle');
           form.elements.namedItem("Vehicle_Id").value=Vehicle_Id;
+           
+
+          
+
         } else {
         app.logUserOut();
       }
@@ -134,8 +156,21 @@ app.bindButtons = function(){
           var overlay = document.getElementsByClassName('overlay')[0];
           overlay.style.display='block';
           formType.style.display='block';
+
+          var cancelBtn= formType.getElementsByClassName('close')[0];
+          cancelBtn.onclick=overlayDisable;
+          function overlayDisable(){
+            document.querySelector(".overlay").style.display='none';
+             document.getElementsByClassName('register')[0].style.display='none';
+             document.querySelector(".formError").style.display = 'none';
+             document.querySelector(".formSuccess").style.display='none';
+          }
           var form = document.getElementById('registerVehicle');
           form.elements.namedItem("Vehicle_Id").value=Vehicle_Id;
+          
+
+
+
           } else {
          app.logUserOut();
         }
@@ -150,6 +185,15 @@ app.bindButtons = function(){
           var overlay = document.getElementsByClassName('overlay')[0];
           overlay.style.display='block';
           formType.style.display='block';
+
+          var cancelBtn= formType.getElementsByClassName('close')[0];
+          cancelBtn.onclick=overlayDisable;
+          function overlayDisable(){
+            document.querySelector(".overlay").style.display='none';
+            document.getElementsByClassName('insurance')[0].style.display='none';
+            document.querySelector(".formError").style.display = 'none';
+            document.querySelector(".formSuccess").style.display='none';
+          }
           var form = document.getElementById('insuranceVehicle');
           form.elements.namedItem("Vehicle_Id").value=Vehicle_Id;
          } else {
@@ -167,6 +211,14 @@ app.bindButtons = function(){
           var overlay = document.getElementsByClassName('overlay')[0];
           overlay.style.display='block';
           formType.style.display='block';
+          var cancelBtn= formType.getElementsByClassName('close')[0];
+          cancelBtn.onclick=overlayDisable;
+          function overlayDisable(){
+            document.querySelector(".overlay").style.display='none';
+            document.getElementsByClassName('mortgage')[0].style.display='none';
+            document.querySelector(".formError").style.display = 'none';
+            document.querySelector(".formSuccess").style.display='none';
+          }
           var form = document.getElementById('mortgageVehicle');
           form.elements.namedItem("Vehicle_Id").value=Vehicle_Id;
           } else {
@@ -298,10 +350,10 @@ app.bindForms = function(){
               var error = typeof(responsePayload.Error) == 'string' ? responsePayload.Error : 'An error has occured, please try again';
 
               // Set the formError field with the error text
-              document.querySelector("#"+formId+" .formError").innerHTML = error;
+              document.querySelector(".formError").innerHTML = error;
 
               // Show the form error field on the form
-              document.querySelector("#"+formId+" .formError").style.display = 'block';
+              document.querySelector(".formError").style.display = 'block';
             }
           } else {
             // If successful, send to form response processor
@@ -385,9 +437,10 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
  
   if(formId=='registerVehicle'){
     document.querySelector(".register").style.display='none';
+
     app.loadBlockChainInfo(responsePayload);
-      document.querySelector(".formSuccess").innerHTML = "Registration Detail updated successfully!";
-     document.querySelector(".formSuccess").style.display="block";
+    document.querySelector(".formSuccess").innerHTML = "Registration Detail updated successfully!";
+    document.querySelector(".formSuccess").style.display="block";
   }
   if(formId=='insuranceVehicle'){
     document.querySelector(".insurance").style.display='none';
@@ -511,6 +564,7 @@ app.loadBlockChainInfo = function(responsePayload){
             document.querySelector(".overlay").style.display='none';
             document.querySelector(".blockchainDetail").style.display='none';
             document.querySelector(".formSuccess").style.display='none';
+            document.querySelector(".formError").style.display='none';
           }
 
 };
@@ -671,16 +725,31 @@ app.loadInfoOnPage=function(responsePayload){
                               document.getElementsByName("Model_year_Detail")[0].value="Model Year: "+responsePayload.Response.BasicDetail[0].Model_Year;
                               document.getElementsByName("Model_no_Detail")[0].value="Model No: "+responsePayload.Response.BasicDetail[0].Model_No;
                               document.getElementsByName("Chassis_no_Detail")[0].value="Chassis No: "+responsePayload.Response.BasicDetail[0].Chassis_No;
+                              }else{
+                              document.getElementsByName("Type_Detail")[0].value="Type: ";
+                              document.getElementsByName("Manufacturer_Detail")[0].value="Manufacturer: ";
+                              document.getElementsByName("Model_year_Detail")[0].value="Model Year: ";
+                              document.getElementsByName("Model_no_Detail")[0].value="Model No: ";
+                              document.getElementsByName("Chassis_no_Detail")[0].value="Chassis No: ";
+
                               }
                               if(responsePayload.Response && responsePayload.Response.TransferDetail[0]){
                               document.getElementsByName("Dealer_name")[0].value="Dealer: "+responsePayload.Response.TransferDetail[0].Dealer;
                               document.getElementsByName("Transfer_date")[0].value="Transfer Date: "+responsePayload.Response.TransferDetail[0].Transfer_Date;
+                              }else{
+                              document.getElementsByName("Dealer_name")[0].value="Dealer: ";
+                              document.getElementsByName("Transfer_date")[0].value="Transfer Date: ";
                               }
                               if(responsePayload.Response && responsePayload.Response.SalesDetail[0]){
                               document.getElementsByName("Buyer")[0].value="Buyer: "+responsePayload.Response.SalesDetail[0].Buyer;
                               document.getElementsByName("Sale_amount")[0].value="Sale Amount: "+responsePayload.Response.SalesDetail[0].SalesAmount;
                               document.getElementsByName("Adhaar")[0].value="Adhaar: "+responsePayload.Response.SalesDetail[0].Adhaar;
                               document.getElementsByName("Pan_no")[0].value="PAN No: "+responsePayload.Response.SalesDetail[0].PAN_no;
+                              }else{
+                              document.getElementsByName("Buyer")[0].value="Buyer: ";
+                              document.getElementsByName("Sale_amount")[0].value="Sale Amount: ";
+                              document.getElementsByName("Adhaar")[0].value="Adhaar: ";
+                              document.getElementsByName("Pan_no")[0].value="PAN No: ";
                               }
                               if(responsePayload.Response && responsePayload.Response.RegistrationDetail[0]){
                               document.getElementsByName("Registration_no")[0].value="Registration No: "+responsePayload.Response.RegistrationDetail[0].Registration_No;
@@ -689,17 +758,34 @@ app.loadInfoOnPage=function(responsePayload){
                               document.getElementsByName("Expiry_date")[0].value="Expiry Date: "+responsePayload.Response.RegistrationDetail[0].Expiry_Date;
                               document.getElementsByName("Authority")[0].value="Authority: "+responsePayload.Response.RegistrationDetail[0].Authority;
                               document.getElementsByName("Location")[0].value="Location: "+responsePayload.Response.RegistrationDetail[0].Location;
+                              }else{
+                              document.getElementsByName("Registration_no")[0].value="Registration No: ";
+                              document.getElementsByName("Fee")[0].value="Fee: ";
+                              document.getElementsByName("Date")[0].value="Date: ";
+                              document.getElementsByName("Expiry_date")[0].value="Expiry Date: ";
+                              document.getElementsByName("Authority")[0].value="Authority: ";
+                              document.getElementsByName("Location")[0].value="Location: ";
                               }
                               if(responsePayload.Response && responsePayload.Response.InsuranceDetail[0]){
                               document.getElementsByName("Policy_no")[0].value="Policy No: "+responsePayload.Response.InsuranceDetail[0].Policy_No;
                               document.getElementsByName("Company")[0].value="Company: "+responsePayload.Response.InsuranceDetail[0].Company;
                               document.getElementsByName("Date_Insurance")[0].value="Date: "+responsePayload.Response.InsuranceDetail[0].Policy_Date;
                               document.getElementsByName("Expiry_date_Insurance")[0].value="Expiry Date: "+responsePayload.Response.InsuranceDetail[0].Expiry_Date;
+                              }else{
+                              document.getElementsByName("Policy_no")[0].value="Policy No: ";
+                              document.getElementsByName("Company")[0].value="Company: ";
+                              document.getElementsByName("Date_Insurance")[0].value="Date: ";
+                              document.getElementsByName("Expiry_date_Insurance")[0].value="Expiry Date: ";
                               }
+
                               if(responsePayload.Response && responsePayload.Response.MortgageDetail[0]){
                               document.getElementsByName("Finance_company")[0].value="Company: "+responsePayload.Response.MortgageDetail[0].Company;
                               document.getElementsByName("Amount")[0].value="Amount: "+responsePayload.Response.MortgageDetail[0].Amount;
                               document.getElementsByName("Status")[0].value="Status: "+responsePayload.Response.MortgageDetail[0].Status;
+                              }else{
+                              document.getElementsByName("Finance_company")[0].value="Company: ";
+                              document.getElementsByName("Amount")[0].value="Amount: ";
+                              document.getElementsByName("Status")[0].value="Status: ";
                               }
 
                               document.querySelector(".overlay").style.display='block';
