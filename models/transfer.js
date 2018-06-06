@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var TransferSchema = new mongoose.Schema({
     Dealer:String,
     Vehicle_Id:String,
-    Transfer_date:String,
+    Transfer_Date:String,
     DigiSign:String
 });
 

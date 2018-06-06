@@ -1,0 +1,66 @@
+<div class="formWrapper">
+    <form id="addVehicle" action="/api/add" method="POST">
+        <div class="formError"></div>
+          <div class="formSuccess"></div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Type</div>
+            <input type="text" name="Type" placeholder="Luxury" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Manufacturer</div>
+            <input type="text" name="Manufacturer" placeholder="Ex. Hyundai" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Model_No</div>
+            <input type="text" name="Model_No" placeholder="Ex. Verna" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Model_Year</div>
+            <input type="text" name="Model_Year" placeholder="Ex 2018" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Chassis_No</div>
+            <input type="text" name="Chassis_No" placeholder="Number dude" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">DigiSign</div>
+            <input type="password" name="DigiSign" placeholder="******" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <button type="submit" class="cta blue">Add</button>
+        </div>
+    </form>
+
+    <div class="overlay"></div>
+
+    <div class="modal">
+        <div class="inputWrapper">
+            <div class="inputLabel">BLOCKCHAIN DETAIL</div>
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Hash:</div>
+            <input type="button" size="20" name="Hash" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Vehicle Id:</div>
+            <input type="button" size="20" name="Vehicle_Id" />
+        </div>
+        <div class="inputWrapper ">
+            <div class="inputLabel"> TimeStamp:</div>
+            <input type="button" size="20" name="TimeStamp" />
+        </div>
+        <div class="inputWrapper ">
+            <div class="inputLabel">Status:</div>
+            <input type="button" size="20" name="Status" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <a href="/home">
+                <button class="cta blue">Close</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</div>

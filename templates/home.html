@@ -1,0 +1,381 @@
+
+<div class="horformWrapper">
+    <form id="search" action="api/search" method="GET">
+        <div class="inputWrapper">
+            <div class="inputLabel">ID</div>
+            <input type="password" name="Vehicle_Id" placeholder="ID" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Type</div>
+            <input type="text" name="Type" placeholder="Luxury" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Manufacturer</div>
+            <input type="text" name="Manufacturer" placeholder="Ex. Hyundai" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Model_No</div>
+            <input type="text" name="Model_No" placeholder="Ex. Verna" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Model_Year</div>
+            <input type="text" name="Model_Year" placeholder="Ex 2018" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Chassis_No</div>
+            <input type="text" name="Chassis_No" placeholder="Number dude" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Status</div>
+            <input type="text" name="Status" placeholder="Ex New" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <button type="submit" class="cta blue">Search</button>
+        </div>
+    </form>
+</div>
+
+<!-- <hr/>
+<hr/>
+<hr/> -->
+<div style="clear:both;">&nbsp;</div>
+
+<div class="horButtonWrapper">
+    <button type="submit" name="Transfer" class="cta">Transfer to Dealer</button>
+    <button type="submit" name="Sales" class="cta">Sales Detail</button>
+    <button type="submit" name="Registration" class="cta">Registration</button>
+    <button type="submit" name="Insurance" class="cta">Insurance Policy</button>
+    <button type="submit" name="Mortgage" class="cta">Mortgage</button>
+</div>
+
+<div style="clear:both;">&nbsp;</div>
+<div>
+    <table id="infoListTable">
+        <tr>
+
+            <th>Vehicle_Id</th>
+            <th>Type</th>
+            <th>Manufacturer</th>
+            <th>Model No</th>
+            <th>Year</th>
+            <th>Chassis No</th>
+            <th>Status </th>
+            <th></th>
+        </tr>
+        <tr id="noVehicleMessage" display="none">
+            <td colspan="5"><center>No vehicle loaded!</center></td>
+        </tr>
+
+    </table>
+</div>
+
+<div class="overlay"></div>
+
+<div class="horform modal">
+    <div class="inputWrapper">
+        <div class="inputLabel">VEHICLES DETAIL</div>
+
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" name="Vehicle_Id" value="Vehicle_Id: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" name="Status" value="Status: " />
+        </div>
+    </div>
+    <hr>
+    <div class="inputWrapper">
+        <div class="inputLabel">Basic Details:</div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Type_Detail" value="Type: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Manufacturer_Detail" value="Manufacturer: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Model_year_Detail" value="Model Year: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Model_no_Detail" value="Model No: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Chassis_no_Detail" value="Chassis No: " />
+        </div>
+
+    </div>
+    <div style="clear:both;">&nbsp;</div>
+    <div class="inputWrapper">
+        <div class="inputLabel">Dealer Details:</div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Dealer_name" value="Dealer's Name: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Transfer_date" value="Transfer Date: " />
+        </div>
+    </div>
+
+    <div style="clear:both;">&nbsp;</div>
+
+    <div class="inputWrapper">
+        <div class="inputLabel">Sales Details:</div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Buyer" value="Buyer: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Sale_amount" value="Sale Amount: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Adhaar" value="Adhaar: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Pan_no" value="PAN no: " />
+        </div>
+
+    </div>
+
+    <div style="clear:both;">&nbsp;</div>
+
+    <div class="inputWrapper ">
+        <div class="inputLabel">Registration Details:</div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Registration_no" value="Registration No: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Fee" value="Fee: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Date" value="Date; " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Expiry_date" value="Expiry Date: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Authority" value="Authority: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Location" value="Location: " />
+        </div>
+    </div>
+
+    <div style="clear:both;">&nbsp;</div>
+
+    <div class="inputWrapper ">
+        <div class="inputLabel">Insurance Policy Details:</div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Policy_no" value="Policy No; " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Company" value="Company: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Date" value="Date: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Expiry_date_Insurance" value="Expiry Date; " />
+        </div>
+    </div>
+
+    <div style="clear:both;">&nbsp;</div>
+
+    <div class="inputWrapper ">
+        <div class="inputLabel">Mortgage Details:</div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Finance_company" value="Finance company: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Amount" value="Amount: " />
+        </div>
+        <div style="float:left;">
+            <input style="text-align:left;" type="button" size="10" name="Status" value="Status: " />
+        </div>
+    </div>
+
+    <div style="clear:both;">&nbsp;</div>
+
+    <div class="inputWrapper ctaWrapper">
+        
+        <button class="cta blue">Close</button>
+
+    </div>
+</div>
+
+<!-- //=====================================================================> TRANSFER TO DEALER-->
+<div class="formWrapper transfer modal">
+    <form id="transferVehicle" action="/api/transfer" method="POST">
+        <div class="inputWrapper hiddenField">
+            <input type="text" name="Vehicle_Id" placeholder="Date" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Dealer</div>
+            <input type="text" name="Dealer" placeholder="Dealer_name" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Transfer Date</div>
+            <input type="text" name="Transfer_Date" placeholder="Date" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Digi. Sign</div>
+            <input type="password" name="DigiSign" placeholder="******" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <button type="submit" class="cta blue">Add</button>
+        </div>
+    </form>
+</div>
+<!-- ============================================================================>SALES DETAILS -->
+<div class="formWrapper sale modal">
+    <form id="saleVehicle" action="/api/sale" method="POST">
+        <div class="inputWrapper hiddenField">
+            <input type="text" name="Vehicle_Id" placeholder="Date" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Adhaar:</div>
+            <input type="text" name="Adhaar" placeholder="Dealer_name" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Buyer:</div>
+            <input type="text" name="Buyer" placeholder="Dealer_name" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">PAN No.:</div>
+            <input type="text" name="PAN_no" placeholder="Dealer_name" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Sales Amount:</div>
+            <input type="text" name="SalesAmount" placeholder="Date" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Digi. Sign:</div>
+            <input type="password" name="DigiSign" placeholder="******" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <button type="submit" class="cta blue">Add</button>
+        </div>
+    </form>
+</div>
+
+<!--  ======================================================================>REGISTRATION  -->
+<div class="formWrapper register modal">
+    <form id="registerVehicle" action="/api/register" method="POST">
+        <div class="inputWrapper hiddenField">
+            <input type="text" name="Vehicle_Id" placeholder="Vehicle_Id" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Registration No.:</div>
+            <input type="text" name="Registration_No" placeholder="Registartion Number" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Registration Date:</div>
+            <input type="text" name="Registration_Date" placeholder="Date of registration" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Expiry Date:</div>
+            <input type="text" name="Expiry_Date" placeholder="Date" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Fee:</div>
+            <input type="text" name="Fee" placeholder="Fee in rupee" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Authority:</div>
+            <input type="text" name="Authority" placeholder="Authority" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Location:</div>
+            <input type="text" name="Location" placeholder="loacation" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Digi. Sign:</div>
+            <input type="password" name="DigiSign" placeholder="******" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <button type="submit" class="cta blue">Add</button>
+        </div>
+    </form>
+</div>
+<!-- ====================================================================>INSURANCE -->
+<div class="formWrapper insurance modal">
+    <form id="insuranceVehicle" action="/api/insurance" method="POST">
+        <div class="inputWrapper hiddenField">
+            <input type="text" name="Vehicle_Id" placeholder="Vehicle_Id" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Policy No.</div>
+            <input type="text" name="Policy_No" placeholder="Registartion Number" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Policy Date:</div>
+            <input type="text" name="Policy_Date" placeholder="Date of registration" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Expiry Date:</div>
+            <input type="text" name="Expiry_Date" placeholder="Date" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Company:</div>
+            <input type="text" name="Company" placeholder="Company" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Digi. Sign:</div>
+            <input type="password" name="DigiSign" placeholder="******" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <button type="submit" class="cta blue">Add</button>
+        </div>
+    </form>
+</div>
+<!--   ===========================================================================>MORTGAGE -->
+<div class="formWrapper mortgage modal">
+    <form id="mortgageVehicle" action="/api/mortgage" method="POST">
+        <div class="inputWrapper hiddenField">
+            <input type="text" name="Vehicle_Id" placeholder="Vehicle_Id" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Status:</div>
+            <input type="text" name="Status" placeholder="Date" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Amount:</div>
+            <input type="text" name="Amount" placeholder="Fee in rupee" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel">Company:</div>
+            <input type="text" name="Company" placeholder="Company" />
+        </div>
+        <div class="inputWrapper">
+            <div class="inputLabel"> Digi. Sign:</div>
+            <input type="password" name="DigiSign" placeholder="******" />
+        </div>
+        <div class="inputWrapper ctaWrapper">
+            <button type="submit" class="cta blue">Add</button>
+        </div>
+    </form>
+</div>
+
+<div class="blockchainDetail modal">
+    <div class="inputWrapper">
+        <div class="inputLabel">BLOCKCHAIN DETAIL</div>
+    </div>
+    <div class="inputWrapper">
+        <div class="inputLabel">Hash:</div>
+        <input type="button" size="20" class="Hash" />
+    </div>
+    <div class="inputWrapper">
+        <div class="inputLabel">Vehicle Id:</div>
+        <input type="button" size="20" class="Vehicle_Id" />
+    </div>
+    <div class="inputWrapper">
+        <div class="inputLabel">TimeStamp:</div>
+        <input type="button" size="20" class="TimeStamp" />
+    </div>
+    <div class="inputWrapper ">
+        <div class="inputLabel">Status:</div>
+        <input type="button" size="20" class="Status" />
+    </div>
+    <div class="inputWrapper ctaWrapper">
+        <button class="cta blue">Close:</button>
+    </div>
+
+</div>
+<div class="formError"></div>
+<div class="formSuccess"></div>
+</div>
