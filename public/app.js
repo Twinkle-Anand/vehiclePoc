@@ -80,6 +80,7 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
  var payloadString = JSON.stringify(payload);
  xhr.send(payloadString);
 
+
 };
 
 app.bindButtons = function(){
@@ -89,6 +90,7 @@ app.bindButtons = function(){
 
   // Logic for Transaction page
   if(primaryClass === 'search'){
+
          document.getElementsByName("Transfer")[0].addEventListener("click",function(e){
         var phone = typeof(app.config.sessionToken.phone_no) == 'string' ? app.config.sessionToken.phone_no : false;
         if(phone){
@@ -107,8 +109,10 @@ app.bindButtons = function(){
              document.querySelector(".formError").style.display = 'none';
              document.querySelector(".formSuccess").style.display='none';
           }
+          console.log(Vehicle_Id);
           var form = document.getElementById('transferVehicle');
           form.elements.namedItem("Vehicle_Id").value=Vehicle_Id;
+          console.log(form.elements.namedItem("Vehicle_Id").value);
         } else {
         app.logUserOut();
       }
@@ -258,7 +262,7 @@ app.logUserOut = function(redirectUser){
   };
  
   app.client.request(undefined,'api/token','DELETE',queryStringObject,undefined,function(statusCode,responsePayload){
-    if(statusCode==200){
+
     // Set the app.config token as false
     app.setSessionToken(false);
 
@@ -266,8 +270,6 @@ app.logUserOut = function(redirectUser){
     if(redirectUser){
       window.location = '/session/deleted';
     }
-  }
-
   });
 };
 
@@ -357,7 +359,7 @@ app.bindForms = function(){
             }
           } else {
             // If successful, send to form response processor
-            console.log("Payload==",responsePayload);
+     
             app.formResponseProcessor(formId,payload,responsePayload);
           }
 
@@ -369,7 +371,6 @@ app.bindForms = function(){
 
 // Form response processor
 app.formResponseProcessor = function(formId,requestPayload,responsePayload){
-  var functionToCall = false;
   // If account creation was successful, try to immediately log the user in
   if(formId == 'accountCreate'){
     // Take the phone_no and password, and use it to log the user in
@@ -419,15 +420,17 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
      app.loadInfoOnPage(responsePayload);
   }
   if(formId=='transferVehicle'){
-
+   document.querySelector(".formError").style.display='none';
+   document.querySelector(".formSuccess").style.display='none';
    document.querySelector(".transfer").style.display='none';
-
-    app.loadBlockChainInfo(responsePayload);
+   app.loadBlockChainInfo(responsePayload);
     document.querySelector(".formSuccess").innerHTML = "Dealer's Detail updated successfully!";
     document.querySelector(".formSuccess").style.display="block";
   }
 
   if(formId=='saleVehicle'){
+    document.querySelector(".formError").style.display='none';
+    document.querySelector(".formSuccess").style.display='none';
     document.querySelector(".sale").style.display='none';
     app.loadBlockChainInfo(responsePayload);
     document.querySelector(".formSuccess").innerHTML = "Sales Detail updated successfully!";
@@ -436,6 +439,8 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
  
   if(formId=='registerVehicle'){
+    document.querySelector(".formError").style.display='none';
+    document.querySelector(".formSuccess").style.display='none';
     document.querySelector(".register").style.display='none';
 
     app.loadBlockChainInfo(responsePayload);
@@ -443,12 +448,16 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
     document.querySelector(".formSuccess").style.display="block";
   }
   if(formId=='insuranceVehicle'){
+    document.querySelector(".formError").style.display='none';
+    document.querySelector(".formSuccess").style.display='none';
     document.querySelector(".insurance").style.display='none';
     app.loadBlockChainInfo(responsePayload);
       document.querySelector(".formSuccess").innerHTML = "Insurance Detail updated successfully!";
      document.querySelector(".formSuccess").style.display="block";
   }
   if(formId=='mortgageVehicle'){
+    document.querySelector(".formError").style.display='none';
+    document.querySelector(".formSuccess").style.display='none';
     document.querySelector(".mortgage").style.display='none';
      app.loadBlockChainInfo(responsePayload);
      document.querySelector(".formSuccess").innerHTML = "Mortgage Detail updated successfully!";
@@ -485,7 +494,6 @@ app.setLoggedInClass = function(add){
     target.classList.add('loggedIn');
   } else {
     target.classList.remove('loggedIn');
-    app.logUserOut();
   }
 };
 
@@ -525,9 +533,7 @@ app.renewToken = function(callback){
          } else {
           
             app.setSessionToken(false);
-            
-            
-            callback(true);
+             callback(true);
          
         }
     });
@@ -569,6 +575,33 @@ app.loadBlockChainInfo = function(responsePayload){
 
 };
 
+app.loadAddCheck = function(){
+  // Get the current page from the body class
+  var bodyClasses = document.querySelector("body").classList;
+  var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
+
+  // Logic for Transaction page
+  if(primaryClass === 'homeAdd'){
+     var phone = typeof(app.config.sessionToken.phone_no) == 'string' ? app.config.sessionToken.phone_no : false;
+  if(!phone){
+    app.logUserOut();
+   }
+ } 
+}
+app.loadHomeCheck = function(){
+  // Get the current page from the body class
+  var bodyClasses = document.querySelector("body").classList;
+  var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
+
+  // Logic for Transaction page
+  if(primaryClass === 'search' ){
+     var phone = typeof(app.config.sessionToken.phone_no) == 'string' ? app.config.sessionToken.phone_no : false;
+  if(!phone){
+    app.logUserOut();
+   }
+ } 
+
+}
 // Load data on the page
 app.loadDataOnPage = function(){
   // Get the current page from the body class
@@ -624,10 +657,14 @@ app.loadTransactionPage = function(){
         
                  }
                 
-              } else {
-                console.log("Error trying to load transaction: ");
+              } else if(statusCode == 403) {
+                  app.logUserOut();
               }
-            });
+              else{
+                  document.querySelector(".formError").innerHTML=responsePayload.Error;
+                  document.querySelector(".formError").style.display="block";
+              }
+          });
          
   } else {
     app.logUserOut();
@@ -660,8 +697,8 @@ app.loadInfoOnPage=function(responsePayload){
                     var td3 = tr.insertCell(3);
                     var td4 = tr.insertCell(4);
                     var td5 = tr.insertCell(5);
-                    var td6 = tr.insertCell(6);
-                    var td7 = tr.insertCell(7);
+                  //  var td6 = tr.insertCell(6);
+                    var td7 = tr.insertCell(6);
                   
                 
                     td0.innerHTML = element._id;
@@ -721,12 +758,16 @@ app.loadInfoOnPage=function(responsePayload){
                             //app.formResponseProcessor(formId,payload,responsePayload);
                               if(responsePayload.Response && responsePayload.Response.BasicDetail[0]){
                               document.getElementsByName("Type_Detail")[0].value="Type: "+responsePayload.Response.BasicDetail[0].Type;
+                              document.getElementsByName("Info_Vehicle_Id")[0].value="Vehicle_Id: "+responsePayload.Response.BasicDetail[0]._id;
+                              document.getElementsByName("Info_Status")[0].value="Status: New";
                               document.getElementsByName("Manufacturer_Detail")[0].value="Manufacturer: "+responsePayload.Response.BasicDetail[0].Manufacturer;
                               document.getElementsByName("Model_year_Detail")[0].value="Model Year: "+responsePayload.Response.BasicDetail[0].Model_Year;
                               document.getElementsByName("Model_no_Detail")[0].value="Model No: "+responsePayload.Response.BasicDetail[0].Model_No;
                               document.getElementsByName("Chassis_no_Detail")[0].value="Chassis No: "+responsePayload.Response.BasicDetail[0].Chassis_No;
                               }else{
                               document.getElementsByName("Type_Detail")[0].value="Type: ";
+                              document.getElementsByName("Vehicle_Id")[0].value="Vehicle_Id: ";
+                              document.getElementsByName("Info_Status")[0].value="Status: ";
                               document.getElementsByName("Manufacturer_Detail")[0].value="Manufacturer: ";
                               document.getElementsByName("Model_year_Detail")[0].value="Model Year: ";
                               document.getElementsByName("Model_no_Detail")[0].value="Model No: ";
@@ -735,6 +776,7 @@ app.loadInfoOnPage=function(responsePayload){
                               }
                               if(responsePayload.Response && responsePayload.Response.TransferDetail[0]){
                               document.getElementsByName("Dealer_name")[0].value="Dealer: "+responsePayload.Response.TransferDetail[0].Dealer;
+                               document.getElementsByName("Info_Status")[0].value="Status: Transfered to Dealer";
                               document.getElementsByName("Transfer_date")[0].value="Transfer Date: "+responsePayload.Response.TransferDetail[0].Transfer_Date;
                               }else{
                               document.getElementsByName("Dealer_name")[0].value="Dealer: ";
@@ -742,6 +784,7 @@ app.loadInfoOnPage=function(responsePayload){
                               }
                               if(responsePayload.Response && responsePayload.Response.SalesDetail[0]){
                               document.getElementsByName("Buyer")[0].value="Buyer: "+responsePayload.Response.SalesDetail[0].Buyer;
+                               document.getElementsByName("Info_Status")[0].value="Status: Sold";
                               document.getElementsByName("Sale_amount")[0].value="Sale Amount: "+responsePayload.Response.SalesDetail[0].SalesAmount;
                               document.getElementsByName("Adhaar")[0].value="Adhaar: "+responsePayload.Response.SalesDetail[0].Adhaar;
                               document.getElementsByName("Pan_no")[0].value="PAN No: "+responsePayload.Response.SalesDetail[0].PAN_no;
@@ -753,6 +796,7 @@ app.loadInfoOnPage=function(responsePayload){
                               }
                               if(responsePayload.Response && responsePayload.Response.RegistrationDetail[0]){
                               document.getElementsByName("Registration_no")[0].value="Registration No: "+responsePayload.Response.RegistrationDetail[0].Registration_No;
+                               document.getElementsByName("Info_Status")[0].value="Status: Registered";
                               document.getElementsByName("Fee")[0].value="Fee: "+responsePayload.Response.RegistrationDetail[0].Fee;
                               document.getElementsByName("Date")[0].value="Date: "+responsePayload.Response.RegistrationDetail[0].Registration_Date;
                               document.getElementsByName("Expiry_date")[0].value="Expiry Date: "+responsePayload.Response.RegistrationDetail[0].Expiry_Date;
@@ -781,11 +825,11 @@ app.loadInfoOnPage=function(responsePayload){
                               if(responsePayload.Response && responsePayload.Response.MortgageDetail[0]){
                               document.getElementsByName("Finance_company")[0].value="Company: "+responsePayload.Response.MortgageDetail[0].Company;
                               document.getElementsByName("Amount")[0].value="Amount: "+responsePayload.Response.MortgageDetail[0].Amount;
-                              document.getElementsByName("Status")[0].value="Status: "+responsePayload.Response.MortgageDetail[0].Status;
+                              document.getElementsByName("mortgageStatus")[0].value="Status: "+responsePayload.Response.MortgageDetail[0].Status;
                               }else{
                               document.getElementsByName("Finance_company")[0].value="Company: ";
                               document.getElementsByName("Amount")[0].value="Amount: ";
-                              document.getElementsByName("Status")[0].value="Status: ";
+                              document.getElementsByName("mortgageStatus")[0].value="Status: ";
                               }
 
                               document.querySelector(".overlay").style.display='block';
@@ -818,25 +862,35 @@ app.loadInfoOnPage=function(responsePayload){
                   }
                    document.getElementById("noVehicleMessage").style.display='block';
             }
-              } else {
-    app.logUserOut();
-  }
+          }
+          else {
+              app.logUserOut();
+            }
 }
 // Init (bootstrapping)
 app.init = function(){
-  // Get the token from localstorage
+    // Get the token from localstorage
   app.getSessionToken();
+
   // Bind all form submissions
   app.bindForms();
 
  // Bind logout logout button
   app.bindLogoutButton();
-  
-// Load data on page
+
+ // Bind buttons of rest of functionality(eg Mortagage etc)
+  app.bindButtons();    
+ 
+ // Load data on page
   app.loadDataOnPage();
 
-// Bind buttons of rest of functionality(eg Mortagage etc)
-  app.bindButtons();  
+ //check whether user is logged in 
+ app.loadAddCheck();  
+
+ // check whether user is logged in while redirecting to home
+ app.loadHomeCheck();  
+
+
 
  // Renew token
   app.tokenRenewalLoop();

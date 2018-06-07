@@ -3,7 +3,7 @@
     <form id="search" action="api/search" method="GET">
         <div class="inputWrapper">
             <div class="inputLabel">ID</div>
-            <input type="password" name="Vehicle_Id" placeholder="ID" />
+            <input type="text" name="Vehicle_Id" placeholder="ID" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Type</div>
@@ -59,7 +59,7 @@
             <th>Model No</th>
             <th>Year</th>
             <th>Chassis No</th>
-            <th>Status </th>
+         <!--    <th>Status </   -->  
             <th></th>
         </tr>
         <tr id="noVehicleMessage" display="none">
@@ -76,10 +76,10 @@
         <div class="inputLabel">VEHICLES DETAIL</div>
 
         <div style="float:left;">
-            <input style="text-align:left;" type="button" name="Vehicle_Id" value="Vehicle_Id: " />
+            <input style="text-align:left;" type="button" name="Info_Vehicle_Id" value="Vehicle_Id: " />
         </div>
         <div style="float:left;">
-            <input style="text-align:left;" type="button" name="Status" value="Status: " />
+            <input style="text-align:left;" type="button" name="Info_Status" value="Status: " />
         </div>
     </div>
     <hr>
@@ -185,7 +185,7 @@
             <input style="text-align:left;" type="button" size="10" name="Amount" value="Amount: " />
         </div>
         <div style="float:left;">
-            <input style="text-align:left;" type="button" size="10" name="Status" value="Status: " />
+            <input style="text-align:left;" type="button" size="10" name="mortgageStatus" value="Status: " />
         </div>
     </div>
 
@@ -202,7 +202,7 @@
 <div class="formWrapper transfer modal">
     <form id="transferVehicle" action="/api/transfer" method="POST">
         <div class="inputWrapper hiddenField">
-            <input type="text" name="Vehicle_Id" placeholder="Date" />
+            <input type="text" name="Vehicle_Id" placeholder="ID" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Dealer</div>
@@ -210,7 +210,7 @@
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Transfer Date</div>
-            <input type="text" name="Transfer_Date" placeholder="Date" />
+            <input type="date" name="Transfer_Date" placeholder="Date" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel"> Digi. Sign</div>
@@ -227,7 +227,7 @@
 <div class="formWrapper sale modal">
     <form id="saleVehicle" action="/api/sale" method="POST">
         <div class="inputWrapper hiddenField">
-            <input type="text" name="Vehicle_Id" placeholder="Date" />
+            <input type="text" name="Vehicle_Id" placeholder="ID" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Adhaar:</div>
@@ -243,7 +243,7 @@
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Sales Amount:</div>
-            <input type="text" name="SalesAmount" placeholder="Date" />
+            <input type="date" name="SalesAmount" placeholder="Date" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel"> Digi. Sign:</div>
@@ -268,11 +268,11 @@
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Registration Date:</div>
-            <input type="text" name="Registration_Date" placeholder="Date of registration" />
+            <input type="date" name="Registration_Date" placeholder="Date of registration" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Expiry Date:</div>
-            <input type="text" name="Expiry_Date" placeholder="Date" />
+            <input type="date" name="Expiry_Date" placeholder="Date" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Fee:</div>
@@ -309,11 +309,11 @@
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Policy Date:</div>
-            <input type="text" name="Policy_Date" placeholder="Date of registration" />
+            <input type="date" name="Policy_Date" placeholder="Date of registration" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Expiry Date:</div>
-            <input type="text" name="Expiry_Date" placeholder="Date" />
+            <input type="date" name="Expiry_Date" placeholder="Date" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Company:</div>
@@ -337,7 +337,7 @@
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Status:</div>
-            <input type="text" name="Status" placeholder="Date" />
+            <input type="text" name="Status" placeholder="Status" />
         </div>
         <div class="inputWrapper">
             <div class="inputLabel">Amount:</div>
