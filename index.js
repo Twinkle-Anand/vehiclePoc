@@ -14,7 +14,7 @@ app.init=function(){
  
  //Start the servers
   server.listen(process.env.PORT||8080, function(){
-   console.log("The Vehicle Poc Server Has Started!");
+   console.log("The Vehicle Poc Server has started at port 8080 !:) ");
   });
 
 };
