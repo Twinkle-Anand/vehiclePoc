@@ -18,7 +18,7 @@
   "homepage": "https://github.com/Twinkle-Anand/vehiclePoc#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "mongoose": "^5.0.18",
     "vanilla-datatables": "^1.6.14"
